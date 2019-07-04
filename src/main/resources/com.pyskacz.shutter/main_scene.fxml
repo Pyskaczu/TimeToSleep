@@ -1,0 +1,49 @@
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.StackPane?>
+
+<VBox fx:controller="com.pyskacz.shutter.controller.MainSceneController"
+      xmlns:fx="http://javafx.com/fxml"
+      alignment="center"
+      spacing="10">
+    <style>
+        -fx-background-color: Aquamarine;
+    </style>
+    <fx:define>
+        <ToggleGroup fx:id="toggleGroup"/>
+    </fx:define>
+
+    <children>
+        <Text text="Wybierz opcję:"/>
+        <RadioButton fx:id="radio30" text="30 min" toggleGroup="$toggleGroup" selected="true"/>
+        <RadioButton fx:id="radio60" text="60 min" toggleGroup="$toggleGroup"/>
+        <HBox spacing="10" alignment="center">
+            <RadioButton fx:id="radioCustom" text="Moje ustawienia:" toggleGroup="$toggleGroup"/>
+            <TextField fx:id="fieldHours" onKeyReleased="#handleKeyReleasedHours" alignment="BASELINE_RIGHT" minWidth="60" maxWidth="60" />
+            <Text text="h"/>
+            <TextField fx:id="fieldMinutes" onKeyReleased="#handleKeyReleasedMinutes" alignment="BASELINE_RIGHT" minWidth="60" maxWidth="60" />
+            <Text text="min"/>
+        </HBox>
+        <HBox spacing="10" alignment="center">
+            <Button fx:id="setButton" text="Ustaw tajmer" maxWidth="120"
+                    onAction="#handleApplyButtonAction"/>
+            <Button text="Wyłącz tajmer" maxWidth="120"
+                    onAction="#handleCancelButtonAction"/>
+        </HBox>
+        <StackPane >
+            <ProgressBar fx:id="progressBar" progress="0" minHeight="30" minWidth="232">
+                <style>
+                    -fx-accent: #00bff1;
+                </style>
+            </ProgressBar>
+            <Text fx:id="progressBarText" fill="black"/>
+        </StackPane>
+        <Text fx:id="feedbackText"/>
+    </children>
+</VBox>
